@@ -2357,7 +2357,7 @@ int rvWeapon::AmmoAvailable( void ) const {
 	if ( owner ) {
 		return owner->inventory.HasAmmo( ammoType, ammoRequired );
 	} else {
-		return 0;
+		return 1;
 	}
 }
 
@@ -2415,7 +2415,7 @@ rvWeapon::AmmoRequired
 ================
 */
 int	rvWeapon::AmmoRequired( void ) const {
-	return ammoRequired;
+	return 0;
 }
 
 /*
@@ -2522,12 +2522,13 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 		if ( !ammoAvail || ( ( clipSize != 0 ) && ( ammoClip <= 0 ) ) ) {
 			return;
 		}
-
-		owner->inventory.UseAmmo( ammoType, ammoRequired );
+		
+		//owner->inventory.UseAmmo( ammoType, ammoRequired );
 		if ( clipSize && ammoRequired ) {
  			clipPredictTime = gameLocal.time;	// mp client: we predict this. mark time so we're not confused by snapshots
 			ammoClip -= 1;
 		}
+
 
 		// wake up nearby monsters
 		if ( !wfl.silent_fire ) {
