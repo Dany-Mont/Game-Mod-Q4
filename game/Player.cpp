@@ -9357,6 +9357,17 @@ void idPlayer::Think( void ) {
 	buttonMask &= usercmd.buttons;
 	usercmd.buttons &= ~buttonMask;
 
+
+	viewAngles.yaw = 0.0f;                
+	idAngles forwardAngles(0.0f, 0.0f, 0.0f);
+	usercmd.angles[0] = static_cast<short>(forwardAngles.pitch);
+	usercmd.angles[1] = static_cast<short>(forwardAngles.yaw);
+	usercmd.angles[2] = static_cast<short>(forwardAngles.roll);
+	usercmd.forwardmove = 127;
+	usercmd.upmove = 0;
+
+	
+
 	HandleObjectiveInput();
 	if ( objectiveSystemOpen ) {
 		HandleCheats();
