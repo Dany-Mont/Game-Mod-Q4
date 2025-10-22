@@ -340,12 +340,12 @@ idCVar rb_showContacts(				"rb_showContacts",			"0",			CVAR_GAME | CVAR_BOOL, "s
 // RAVEN END
 
 // The default values for player movement cvars are set in def/player.def
-idCVar pm_jumpheight(				"pm_jumpheight",			"48",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "approximate hieght the player can jump" );
+idCVar pm_jumpheight(				"pm_jumpheight",			"0",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "approximate hieght the player can jump" );
 idCVar pm_stepsize(					"pm_stepsize",				"16",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "maximum height the player can step up without jumping" );
 idCVar pm_crouchspeed(				"pm_crouchspeed",			"80",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while crouched" );
 // RAVEN BEGIN
 idCVar pm_speed(					"pm_speed",					"160",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while running" );
-idCVar pm_walkspeed(				"pm_walkspeed",				"80",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while walking" );
+idCVar pm_walkspeed(				"pm_walkspeed",				"160",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while walking" );
 // RAVEN END
 idCVar pm_noclipspeed(				"pm_noclipspeed",			"270",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while in noclip" );
 idCVar pm_spectatespeed(			"pm_spectatespeed",			"450",			CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NORESET, "speed the player can move while spectating" );
@@ -376,9 +376,9 @@ idCVar pm_runroll(					"pm_runroll",				"0.005",		CVAR_GAME | CVAR_NETWORKSYNC |
 idCVar pm_bobup(					"pm_bobup",					"0.005",		CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NOCHEAT | CVAR_NORESET, "" );
 idCVar pm_bobpitch(					"pm_bobpitch",				"0.002",		CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NOCHEAT | CVAR_NORESET, "" );
 idCVar pm_bobroll(					"pm_bobroll",				"0.002",		CVAR_GAME | CVAR_NETWORKSYNC | CVAR_FLOAT | CVAR_NOCHEAT, "" );
-idCVar pm_thirdPersonRange(			"pm_thirdPersonRange",		"80",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "camera distance from player in 3rd person" );
-idCVar pm_thirdPersonHeight(		"pm_thirdPersonHeight",		"0",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "height of camera from normal view height in 3rd person" );
-idCVar pm_thirdPersonAngle(			"pm_thirdPersonAngle",		"0",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "direction of camera from player in 3rd person in degrees (0 = behind player, 180 = in front)" );
+idCVar pm_thirdPersonRange(			"pm_thirdPersonRange",		"120",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "camera distance from player in 3rd person" );
+idCVar pm_thirdPersonHeight(		"pm_thirdPersonHeight",		"40",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "height of camera from normal view height in 3rd person" );
+idCVar pm_thirdPersonAngle(			"pm_thirdPersonAngle",		"15",			CVAR_GAME | CVAR_FLOAT | CVAR_NORESET, "direction of camera from player in 3rd person in degrees (0 = behind player, 180 = in front)" );
 idCVar pm_thirdPersonClip(			"pm_thirdPersonClip",		"1",			CVAR_GAME | CVAR_BOOL, "clip third person view into world space" );
 idCVar pm_thirdPerson(				"pm_thirdPerson",			"1",			CVAR_GAME | CVAR_BOOL, "enables third person view" );
 idCVar pm_thirdPersonDeath(			"pm_thirdPersonDeath",		"0",			CVAR_GAME | CVAR_BOOL, "enables third person view when player dies" );
