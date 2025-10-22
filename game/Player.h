@@ -355,6 +355,7 @@ public:
 	int						nextAmmoRegenPulse[ MAX_AMMO ];	// time when ammo will regenerate
 	int						nextArmorPulse;		// time when armor will tick down
 	bool					hiddenWeapon;		// if the weapon is hidden ( in noWeapons maps )
+	int						nextEnemySpawnTime;	// time when a new enemy can be spawned for the player to fight
 
 	// mp stuff
 	int						spectator;

@@ -1960,6 +1960,7 @@ void idPlayer::Spawn( void ) {
  		SetupWeaponEntity( );
 		SpawnFromSpawnSpot( );
 	}
+	nextEnemySpawnTime = gameLocal.time + 5000;
 
 	// trigger playtesting item gives, if we didn't get here from a previous level
 	// the devmap key will be set on the first devmap, but cleared on any level
@@ -9286,6 +9287,26 @@ Called every tic for each player
 */
 void idPlayer::Think( void ) {
 	renderEntity_t *headRenderEnt;
+	if (gameLocal.time > nextEnemySpawnTime) {
+
+		// Distance in front of player to spawn enemy
+		float forwardDist = 10000.0f;
+
+		// Get spawn position in front of player
+		idVec3 spawnPos = GetPhysics()->GetOrigin() + viewAxis[0] * forwardDist;
+
+		// Spawn the enemy entity
+		idEntity* ent = gameLocal.SpawnEntityDef("Monster_Grunt", NULL);
+		if (ent) {
+			ent->SetOrigin(spawnPos);
+			ent->SetAngles(viewAngles);
+			//gameLocal.Printf("Spawned enemy at %s\n", spawnPos.ToString().c_str());
+		}
+
+		// Set next spawn time (10 seconds later)
+		nextEnemySpawnTime = gameLocal.time + 2500;
+	}
+
  
 	if ( talkingNPC ) {
 		if ( !talkingNPC.IsValid() ) {
