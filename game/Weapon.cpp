@@ -585,7 +585,7 @@ void rvWeapon::Spawn ( void ) {
 	
 	memset ( &wsfl, 0, sizeof(wsfl) );
 	memset ( &wfl, 0, sizeof(wfl) );
-
+	
 // RAVEN BEGIN
 // nrausch:
 #if defined(_XENON)

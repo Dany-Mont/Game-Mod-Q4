@@ -10,8 +10,8 @@
 #define SUBSAMPLE_WALK_PATH		1
 #define SUBSAMPLE_FLY_PATH		0
 
-const int		maxWalkPathIterations		= 10;
-const float		maxWalkPathDistance			= 500.0f;
+const int		maxWalkPathIterations		= 1;
+const float		maxWalkPathDistance			= 30.0f;
 const float		walkPathSampleDistance		= 8.0f;
 
 const int		maxFlyPathIterations		= 10;

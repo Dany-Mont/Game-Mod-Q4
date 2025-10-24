@@ -773,6 +773,9 @@ void idPlayerView::RenderPlayerView( idUserInterface *hud ) {
 
 		ScreenFade();
 	}
+	if (hud && player) {
+		hud->Redraw(gameLocal.time);
+	}
 
 	if ( net_clientLagOMeter.GetBool() && lagoMaterial && gameLocal.isClient && !( gameLocal.GetDemoState() == DEMO_PLAYING && ( gameLocal.IsServerDemo() || gameLocal.IsTimeDemo() ) ) ) {
 		renderSystem->SetColor4( 1.0f, 1.0f, 1.0f, 1.0f );

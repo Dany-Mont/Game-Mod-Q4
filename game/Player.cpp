@@ -1809,6 +1809,8 @@ void idPlayer::Spawn( void ) {
 	idStr		temp;
 	idBounds	bounds;
 
+	survivalStartTime = gameLocal.time;	
+
 	cvarSystem->SetCVarBool("pm_thirdPerson", true);
 
 	if ( entityNumber >= MAX_CLIENTS ) {
@@ -1869,7 +1871,10 @@ void idPlayer::Spawn( void ) {
 		if ( mphud ) {
 			mphud->Activate( true, gameLocal.time );
 		}
-
+		thirdPersonHud = uiManager->FindGui("guis/hud.gui", true, false, true);
+		if (thirdPersonHud) {
+			thirdPersonHud->Activate(true, gameLocal.time);
+		}
 		// load cursor
 		GetCursorGUI();
 		if ( cursor ) {
@@ -9289,23 +9294,21 @@ void idPlayer::Think( void ) {
 	renderEntity_t *headRenderEnt;
 	if (gameLocal.time > nextEnemySpawnTime) {
 
-		// Distance in front of player to spawn enemy
-		float forwardDist = 10000.0f;
+	
+		float forwardDist = 5000.0f;
 
-		// Get spawn position in front of player
 		idVec3 spawnPos = GetPhysics()->GetOrigin() + viewAxis[0] * forwardDist;
 
-		// Spawn the enemy entity
+		
 		idEntity* ent = gameLocal.SpawnEntityDef("Monster_Grunt", NULL);
 		if (ent) {
 			ent->SetOrigin(spawnPos);
 			ent->SetAngles(viewAngles);
-			//gameLocal.Printf("Spawned enemy at %s\n", spawnPos.ToString().c_str());
+			
 		}
-
-		// Set next spawn time (10 seconds later)
-		nextEnemySpawnTime = gameLocal.time + 2500;
+		nextEnemySpawnTime = gameLocal.time + 500;
 	}
+
 
  
 	if ( talkingNPC ) {
@@ -9575,6 +9578,11 @@ void idPlayer::Think( void ) {
 		// clear out our pain flag so we can tell if we recieve any damage between now and the next time we think
 		pfl.pain = false;
 	}
+	int survivedSeconds = (gameLocal.time - survivalStartTime) / 1000;
+	if (hud) {
+		hud->SetStateString("survived_time", va("%d", survivedSeconds));
+	}
+
 
 	if ( !af.IsActive() ) {
 		AdjustBodyAngles();
@@ -9628,6 +9636,7 @@ void idPlayer::Think( void ) {
  		headRenderEnt->suppressSurfaceInViewID = entityNumber + 1;
  	}
 
+
 	// always show your own shadow
 	if( entityNumber == gameLocal.localClientNum ) {
 		renderEntity.suppressLOD = 1;
@@ -9677,6 +9686,7 @@ void idPlayer::Think( void ) {
 		inBuyZone = false;
 
 	inBuyZonePrev = false;
+	
 }
 
 /*

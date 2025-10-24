@@ -30,7 +30,7 @@ protected:
 private:
 
 	int					standingMeleeNoAttackTime;
-	int					rageThreshold;
+	int					rageThreshold = 0;
 
 	void				RageStart			( void );
 	void				RageStop			( void );
@@ -68,6 +68,9 @@ void rvMonsterGrunt::Spawn ( void ) {
 	actionChaingunAttack.Init	( spawnArgs, "action_chaingunAttack",	NULL,				AIACTIONF_ATTACK );
 	actionLeapAttack.Init		( spawnArgs, "action_leapAttack",		"Torso_LeapAttack",	AIACTIONF_ATTACK );
 
+	
+	actionEvadeLeft.fl.disabled = true;
+	actionEvadeRight.fl.disabled = true;
 	// Enraged to start?
 	if ( spawnArgs.GetBool ( "preinject" ) ) {
 		RageStart ( );
@@ -107,7 +110,7 @@ rvMonsterGrunt::RageStart
 */
 void rvMonsterGrunt::RageStart ( void ) {
 	SetShaderParm ( 6, 1 );
-
+	rageThreshold = 0;
 	// Disable non-rage actions
 	actionEvadeLeft.fl.disabled = true;
 	actionEvadeRight.fl.disabled = true;
@@ -117,9 +120,6 @@ void rvMonsterGrunt::RageStart ( void ) {
 
 	// Disable pain
 	pain.threshold = 0;
-
-	// Start over with health when enraged
-	health = spawnArgs.GetInt ( "health" );
 	
 	// No more going to rage
 	rageThreshold = 0;
@@ -226,10 +226,10 @@ rvMonsterGrunt::AdjustHealthByDamage
 void rvMonsterGrunt::AdjustHealthByDamage ( int damage ) {
 	// Take less damage during enrage process 
 	if ( rageThreshold && health < rageThreshold ) { 
-		health -= (damage * 0.25f);
+		health -= (damage * 20.0f);
 		return;
 	}
-	return idAI::AdjustHealthByDamage ( damage );
+	return idAI::AdjustHealthByDamage ( damage*20 );
 }
 
 /*

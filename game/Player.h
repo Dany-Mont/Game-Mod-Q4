@@ -340,6 +340,8 @@ public:
 
  	idUserInterface *		hud;				// Common hud
 	idUserInterface *		mphud;				// hud overlay containing MP elements
+	idUserInterface *       thirdPersonHud;
+	int                     survivalStartTime;
 	
 	idUserInterface *		objectiveSystem;
 	idUserInterface *		cinematicHud;
