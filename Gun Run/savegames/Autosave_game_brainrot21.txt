@@ -1,4 +1,0 @@
-"Autosave game/brainrot21"
-"^:Map Start	^0game/brainrot21"
-""
-nooverwrite
